@@ -4,13 +4,10 @@ class Basecontroller{
     const VIEW_FOLDER_NAME = 'view';
     const MODEL_FOLDER_NAME = 'model';
     protected function view($Viewpath,array $data =[]){
-        // echo '<pre>';
-        // print_r($data);
-        // echo '</pre>';
+        
         foreach($data as $key =>$value){
             $$key = $value;
         }
-       
         $Viewpath =self::VIEW_FOLDER_NAME.'/'. str_replace('.','/',$Viewpath).'.php';
         require($Viewpath);
     }

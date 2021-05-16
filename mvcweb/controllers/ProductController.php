@@ -7,11 +7,16 @@ class Productcontroller extends Basecontroller{
     }
     
     public function index() {
-        $products = $this->productmodel->getAll(['id','name'],);
-        return $this->view('front-end.products.index');
-        [
+        $tentimkiem = '';
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // collect value of input field
+            $tentimkiem = $_POST['timkiem'];
+        }
+            
+        $this->productmodel->findbyname($tentimkiem);
+        $products= $this->productmodel->name;
+        return $this->view('front-end.products.index',[
             'products'=>$products
-        ];
-        
+        ]);
     }
 }

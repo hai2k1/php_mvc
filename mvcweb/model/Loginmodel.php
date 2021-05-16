@@ -3,6 +3,7 @@
 class Loginmodel extends BaseModel{
     const TABLE = 'users';
     public $pw;
+    public $users;
     //lấy thông tin người dùng
     public function user($users=''){
         
@@ -16,10 +17,17 @@ class Loginmodel extends BaseModel{
         
         if ($value = $arr_user[$column_by_user]??['pw'=>'']){
             $this->pw =$value['pw']; 
+            // $this->user = $value['user'];
         }
         else{
             $this->pw = '';
         }
+        
+    }
+    //đăng ký thông tin người dùng
+    public function dangky($user,$pw,$email){
+        $sql = "INSERT INTO `users`(`user`, `pw`, `email`) VALUES ($user,$pw,$email)";
+        $query = $this->_query($sql);
         
     }
 }
